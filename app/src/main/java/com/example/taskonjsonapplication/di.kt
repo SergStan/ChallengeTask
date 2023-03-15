@@ -6,9 +6,11 @@ import com.example.taskonjsonapplication.data.SeriesRepository
 import com.example.taskonjsonapplication.data.SeriesSource
 import com.example.taskonjsonapplication.domain.EpisodeUseCase
 import com.example.taskonjsonapplication.domain.SeriesUseCase
+import com.example.taskonjsonapplication.presentation.series.SeriesViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidApplication
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 
@@ -19,4 +21,5 @@ val seriesModule = module {
     single<Repository> { SeriesRepository(get()) }
     single<SeriesUseCase> { SeriesUseCase(get(), get()) }
     single<EpisodeUseCase> { EpisodeUseCase(get(), get()) }
+    viewModel<SeriesViewModel> { SeriesViewModel(get(), get()) }
 }

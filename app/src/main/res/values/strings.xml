@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">TaskOnJsonApplication</string>
+    <string name="app_name">Hbo Silicon Valley</string>
+    <string name="preview">Preview</string>
+    <string name="template_season">Season number: %s</string>
+    <string name="template_episode">Episode number: %s</string>
+
 </resources>

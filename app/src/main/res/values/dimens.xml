@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="common_margin">12dp</dimen>
+    <dimen name="recycler_vertical_margin">8dp</dimen>
+    <dimen name="recycler_small_margin">4dp</dimen>
+    <dimen name="min_margin">2dp</dimen>
+</resources>
