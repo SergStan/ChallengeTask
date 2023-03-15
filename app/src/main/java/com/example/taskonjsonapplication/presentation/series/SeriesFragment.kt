@@ -6,10 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.AnimRes
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.taskonjsonapplication.EPISODE_FRAGMENT
+import com.example.taskonjsonapplication.R
 import com.example.taskonjsonapplication.databinding.FragmentSeriesBinding
+import com.example.taskonjsonapplication.presentation.episode.EpisodeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SeriesFragment : Fragment(), SeriesAdapter.OnEpisodeItemClickListener {
@@ -80,6 +85,31 @@ class SeriesFragment : Fragment(), SeriesAdapter.OnEpisodeItemClickListener {
     }
 
     override fun onItemClick(seasonNumber: String, episodeNumber: String) {
+        val fragment = EpisodeFragment.getInstance(
+            seasonNumber.split(SPLIT_CHARACTER).last().trim(),
+            episodeNumber.split(SPLIT_CHARACTER).last().trim()
+        )
+        requireActivity().supportFragmentManager.commit {
+            @AnimRes
+            val enter = R.anim.slide_in
 
+            @AnimRes
+            val exit = R.anim.fade_out
+
+            @AnimRes
+            val popEnter = R.anim.fade_in
+
+            @AnimRes
+            val popExit = R.anim.slide_out
+
+            setCustomAnimations(enter, exit, popEnter, popExit)
+            setReorderingAllowed(true)
+            replace(R.id.fragment_container_view, fragment, EPISODE_FRAGMENT)
+            addToBackStack(null)
+        }
+    }
+
+    companion object {
+        private const val SPLIT_CHARACTER = ":"
     }
 }
